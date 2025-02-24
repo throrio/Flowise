@@ -14,11 +14,7 @@
         "strictPropertyInitialization": false,
         "useUnknownInCatchVariables": false,
         "declaration": true,
-        "module": "commonjs",
-        "baseUrl": ".",
-        "paths": {
-            "@mcp-server-sdk/*": ["../../../src/sdk/mcp-server-sdk/src/*"]
-        }
+        "module": "commonjs"
     },
     "include": ["src", "nodes", "credentials"],
     "exclude": ["gulpfile.ts", "node_modules", "dist"]
