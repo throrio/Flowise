@@ -14,8 +14,13 @@
         "strictPropertyInitialization": false,
         "useUnknownInCatchVariables": false,
         "declaration": true,
-        "module": "commonjs"
+        "module": "commonjs",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/types",
+            "./src/sdk/mcp-server-sdk/node_modules/@types"
+        ]
     },
-    "include": ["src", "nodes", "credentials"],
+    "include": ["src", "nodes", "credentials", "src/types/*.d.ts"],
     "exclude": ["gulpfile.ts", "node_modules", "dist"]
 }
