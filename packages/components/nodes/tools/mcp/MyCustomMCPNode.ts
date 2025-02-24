@@ -1,6 +1,6 @@
-import { ICommonObject, INode, INodeData, INodeParams } from '../../src/Interface'
-import { Client as MCPClient } from '../../src/sdk/mcp-server-sdk/src/client'
-import { SSEClientTransport } from '../../src/sdk/mcp-server-sdk/src/client/sse'
+import { ICommonObject, INode, INodeData, INodeParams } from '../../../src/Interface'
+import { Client as MCPClient } from '../../../src/sdk/mcp-server-sdk/src/client'
+import { SSEClientTransport } from '../../../src/sdk/mcp-server-sdk/src/client/sse'
 
 class MyCustomMCPNode implements INode {
     label: string
@@ -19,6 +19,7 @@ class MyCustomMCPNode implements INode {
         this.type = 'MyMCPClient'
         this.icon = 'mcp.svg'
         this.category = 'Tools'
+        this.version = 1.0
         this.description = 'Interact with MCP API via TypeScript SDK'
         this.baseClasses = [this.type]
         this.inputs = [
@@ -38,7 +39,7 @@ class MyCustomMCPNode implements INode {
             version: "1.0.0"
         })
         
-        const transport = new SSEClientTransport(mcpUrl)
+        const transport = new SSEClientTransport(new URL(mcpUrl))
         await client.connect(transport)
 
         return {

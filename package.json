@@ -54,7 +54,9 @@
         "rimraf": "^3.0.2",
         "run-script-os": "^1.1.6",
         "turbo": "1.10.16",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "@types/eventsource": "^1.1.15",
+        "@types/content-type": "^1.1.8"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
@@ -104,5 +106,10 @@
                 }
             ]
         ]
+    },
+    "dependencies": {
+        "pkce-challenge": "^3.1.0",
+        "eventsource": "^2.0.2",
+        "content-type": "^1.0.5"
     }
 }
