@@ -1,27 +1,35 @@
 declare module 'eventsource' {
-    interface EventSourceInitDict {
-        withCredentials?: boolean;
-        headers?: { [key: string]: string };
-    }
-
-    class ErrorEvent extends Event {
-        error: Error;
-        message: string;
-    }
-
-    class EventSource {
-        constructor(url: string | URL, init?: EventSourceInitDict);
-        onopen: (event: Event) => void;
-        onmessage: (event: MessageEvent) => void;
-        onerror: (event: ErrorEvent) => void;
-        close(): void;
+    export class EventSource {
+        constructor(url: string, options?: EventSourceInit);
+        
         readonly CONNECTING: number;
         readonly OPEN: number;
         readonly CLOSED: number;
-        readonly readyState: number;
         readonly url: string;
+        readonly readyState: number;
+        readonly withCredentials: boolean;
+        
+        onopen: (event: Event) => void;
+        onmessage: (event: MessageEvent) => void;
+        onerror: (event: ErrorEvent) => void;
+        
+        addEventListener(type: string, listener: (event: Event) => void): void;
+        removeEventListener(type: string, listener: (event: Event) => void): void;
+        dispatchEvent(event: Event): boolean;
+        close(): void;
+    }
+    
+    export interface EventSourceInit {
+        withCredentials?: boolean;
+        headers?: Record<string, string>;
+        fetch?: (url: string | URL, init?: RequestInit) => Promise<Response>;
+    }
+    
+    export interface ErrorEvent extends Event {
+        code?: number;
+        message?: string;
     }
 
-    export = EventSource;
-    export { ErrorEvent, EventSourceInitDict };
+    // Добавляем тип FetchLike для совместимости с SDK
+    export type FetchLike = (url: string | URL, init?: RequestInit) => Promise<Response>;
 } 

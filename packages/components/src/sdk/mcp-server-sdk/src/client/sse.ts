@@ -113,7 +113,7 @@ export class SSEClientTransport implements Transport {
       this._eventSource = new EventSource(
         this._url.href,
         this._eventSourceInit ?? {
-          fetch: (url, init) => this._commonHeaders().then((headers) => fetch(url, {
+          fetch: (url: string, init?: RequestInit) => this._commonHeaders().then((headers) => fetch(url, {
             ...init,
             headers: {
               ...headers,
@@ -124,7 +124,7 @@ export class SSEClientTransport implements Transport {
       );
       this._abortController = new AbortController();
 
-      this._eventSource.onerror = (event) => {
+      this._eventSource.onerror = (event: ErrorEvent) => {
         if (event.code === 401 && this._authProvider) {
           this._authThenStart().then(resolve, reject);
           return;
