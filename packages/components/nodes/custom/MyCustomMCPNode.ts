@@ -1,6 +1,6 @@
 import { ICommonObject, INode, INodeData, INodeParams } from '../../src/Interface'
-import { Client as MCPClient } from '@mcp-server-sdk/client'
-import { SSEClientTransport } from '@mcp-server-sdk/client/sse'
+import { Client as MCPClient } from '../../src/sdk/mcp-server-sdk/src/client'
+import { SSEClientTransport } from '../../src/sdk/mcp-server-sdk/src/client/sse'
 
 class MyCustomMCPNode implements INode {
     label: string
